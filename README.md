@@ -3,37 +3,75 @@
 ![commits](https://badgen.net/github/commits/UR-CC/lp2-taller1?icon=github) 
 ![last_commit](https://img.shields.io/github/last-commit/UR-CC/lp2-taller1)
 
-- ver [badgen](https://badgen.net/) o [shields](https://shields.io/) para otros tipos de _badges_
-
 ## Autor
 
-- [@estudiante](https://www.github.com/estudiante)
+- [@JavierJGaviria22](https://www.github.com/JavierJGaviria22)
+
+---
 
 ## Descripción del Proyecto
 
-TODO: Corregir la descripción - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut quam dolor. Quisque elementum est sed massa gravida convallis. Donec volutpat turpis eget lectus feugiat congue. Morbi rutrum auctor eleifend. Etiam iaculis libero tellus, vel aliquet erat tempor sed. Duis efficitur quam vel sapien luctus, sed semper lacus mollis. Suspendisse non nunc eleifend, aliquet elit eget, condimentum augue.
+El **Sistema de Agencia de Viajes** es una aplicación académica desarrollada en **Python** utilizando el microframework **Flask** y los principios de **Programación Orientada a Objetos (POO)**.
 
-Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus vel nibh fringilla, porta elit vel, consequat libero. Nulla et libero ac nulla ultricies sollicitudin. Sed viverra non nulla id convallis. Morbi vel varius lacus, in maximus nunc. Praesent sed semper diam. Pellentesque vehicula nulla augue, ut porta dolor consequat at.
+El objetivo principal del sistema es **gestionar reservas de hoteles y paquetes turísticos** de forma sencilla y centralizada.  
+Permite registrar hoteles, habitaciones y clientes, así como realizar búsquedas, gestionar reservas, aplicar políticas de cancelación y visualizar tarifas de destinos turísticos.
+
+El proyecto fue diseñado con una arquitectura modular y extensible, priorizando la claridad y la funcionalidad sobre la complejidad.  
+
+---
 
 ## Documentación
 
-Revisar la documentación en [`./docs`](./docs)
+Toda la documentación complementaria se encuentra en [`./docs`](./docs)
+
+---
 
 ### Requerimientos
 
-TODO: Corregir la lista de requerimientos:
-- **R1**: El sistema debe ...
-- **R2**: El sistema debe ...
-<br>...<br>
-- **Rn**: El sistema debe ...
-- **Rm**: El sistema debe ...
+#### Requerimientos funcionales
+- **R1**: El sistema debe permitir registrar hoteles con su información básica (nombre, dirección, teléfono, correo, ubicación, descripción y servicios).
+- **R2**: El sistema debe permitir registrar habitaciones asociadas a un hotel, con su tipo, descripción, precio, capacidad, servicios y estado (activo/inactivo/mantenimiento).
+- **R3**: Solo las habitaciones y hoteles activos podrán mostrarse en las búsquedas o ser reservadas.
+- **R4**: El sistema debe permitir registrar clientes con nombre, teléfono, correo electrónico y dirección.
+- **R5**: Los clientes deben poder buscar habitaciones disponibles por **fecha**, **ubicación**, **precio** o **calificación**.
+- **R6**: Los clientes podrán realizar **reservas** seleccionando habitación, rango de fechas y número de huéspedes, validando la disponibilidad y capacidad.
+- **R7**: Las reservas podrán tener diferentes estados (`pendiente`, `confirmada`, `cancelada`, `completada`).
+- **R8**: Cada hotel podrá definir sus propias políticas de cancelación y pago.
+- **R9**: El sistema debe permitir registrar **comentarios y calificaciones** de los clientes una vez completada la estancia.
+- **R10**: El sistema debe calcular calificaciones promedio por habitación y por hotel.
+- **R11**: Se deben registrar las **tarifas de destinos turísticos**, con precios base de pasajes y categorías **silver**, **gold** y **platinum**.
+- **R12**: Los clientes podrán reservar **paquetes turísticos** combinando destino y categoría.
+- **R13**: Las habitaciones inactivas o en mantenimiento no podrán ser reservadas.
+
+#### Requerimientos no funcionales
+- **RNF1**: La aplicación debe estar desarrollada en Python con Flask.
+- **RNF2**: La arquitectura debe seguir los principios de POO.
+- **RNF3**: El sistema debe contar con persistencia de datos (ej. SQLite o MySQL).
+- **RNF4**: La interfaz debe ser simple, clara y funcional para demostración académica.
+- **RNF5**: El sistema debe permitir fácilmente la extensión de nuevas funcionalidades (ofertas, temporadas, reportes).
+
+---
 
 ### Diseño
 
-TODO: Crear el diagrama de clases:
+El diseño del sistema se basa en un **modelo orientado a objetos** con clases principales que representan las entidades del dominio:
+
+- `Hotel`
+- `Habitacion`
+- `Cliente`
+- `Reserva`
+- `Destino`
+- `Tarifa`
+- `Reseña` (opcional)
+
+Estas clases se relacionan entre sí mediante composición y asociaciones directas.  
+Por ejemplo, un **Hotel** contiene múltiples **Habitaciones**, y una **Habitación** puede tener varias **Reservas**.
+
+El siguiente diagrama de clases ilustra la estructura general del sistema:
 
 ![Diagrama de Clases](./docs/diagramas.png)
 
+---
 
 ### Tárifas
 
@@ -56,11 +94,15 @@ TODO: Crear el diagrama de clases:
 |Taipei|912|220|245|298|
 |Tokio|989|189|231|255|
 
+Estas tarifas pueden ser cargadas desde un archivo o tabla de inicialización, y consultadas mediante el módulo de paquetes turísticos.
+
+---
+
 ## Instalación
 
-TODO: Corregir la explicación de la instalación - Morbi quam lectus, tempus sit amet mi non, facilisis dignissim erat. Aenean tortor libero, rhoncus eu eleifend ut, volutpat id nisi. Ut porta eros at ante rutrum pharetra. Integer nec nulla dictum, vestibulum ligula id, hendrerit ex. Morbi eget tortor metus.
+Para ejecutar el sistema en tu entorno local, sigue los pasos:
 
-1. Clonar el proyecto
+1. **Clonar el proyecto**
 ```bash
 git clone https://github.com/UR-CC/lpa1-taller-requerimientos.git
 ```
@@ -70,6 +112,7 @@ git clone https://github.com/UR-CC/lpa1-taller-requerimientos.git
 cd lpa1-taller-requerimientos
 python -m venv venv
 venv/bin/activate
+source venv/bin/activate
 ```
 
 3. Instalar librerías y dependencias

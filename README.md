@@ -69,7 +69,7 @@ Por ejemplo, un **Hotel** contiene múltiples **Habitaciones**, y una **Habitaci
 
 El siguiente diagrama de clases ilustra la estructura general del sistema:
 
-![Diagrama de Clases](./docs/diagramas.png)
+Ver [Diagrama de Clases](diagrama.md)
 
 ---
 

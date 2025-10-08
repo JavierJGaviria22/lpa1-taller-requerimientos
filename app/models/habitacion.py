@@ -10,3 +10,5 @@ class Habitacion(db.Model):
     capacidad = db.Column(db.Integer, nullable=False)
     estado = db.Column(db.String(20), default='disponible')
     hotel_id = db.Column(db.Integer, db.ForeignKey('hoteles.id'), nullable=False)
+
+

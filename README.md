@@ -122,8 +122,6 @@ pip install -r requirements.txt
     
 ## Ejecución
 
-TODO: Corregir la explicación de la ejecución - Maecenas sed lorem at arcu varius mollis. Sed eleifend nulla ut blandit interdum. Donec sollicitudin nunc at orci facilisis dignissim. Donec at arcu luctus, commodo magna eget, blandit leo.
-
 1. Ejecutar el proyecto
 ```bash
 cd lpa1-taller-requerimientos

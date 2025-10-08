@@ -1,0 +1,1 @@
+# Esquema de validación Cliente

@@ -20,8 +20,17 @@ def create_app():
     try:
         from app.routes.hoteles import hoteles_bp
         from app.routes.habitaciones import habitaciones_bp
-        app.register_blueprint(hoteles_bp)
-        app.register_blueprint(habitaciones_bp)
+        from app.routes.clientes import clientes_bp
+        from app.routes.reservas import reservas_bp
+
+        # 🔹 Prefijo /api para todas las rutas
+        app.register_blueprint(hoteles_bp, url_prefix="/api")
+        app.register_blueprint(habitaciones_bp, url_prefix="/api")
+        app.register_blueprint(clientes_bp, url_prefix="/api")
+        app.register_blueprint(reservas_bp)
+
+        print("✅ Blueprints registrados correctamente")
+
     except Exception as e:
         print(f"⚠️ No se pudieron registrar los blueprints: {e}")
 

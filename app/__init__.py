@@ -22,12 +22,14 @@ def create_app():
         from app.routes.habitaciones import habitaciones_bp
         from app.routes.clientes import clientes_bp
         from app.routes.reservas import reservas_bp
+        from app.routes.tarifas import tarifas_bp
 
         # 🔹 Prefijo /api para todas las rutas
-        app.register_blueprint(hoteles_bp, url_prefix="/api")
+        app.register_blueprint(hoteles_bp)
         app.register_blueprint(habitaciones_bp, url_prefix="/api")
         app.register_blueprint(clientes_bp, url_prefix="/api")
         app.register_blueprint(reservas_bp)
+        app.register_blueprint(tarifas_bp)
 
         print("✅ Blueprints registrados correctamente")
 

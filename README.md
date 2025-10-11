@@ -29,13 +29,21 @@ Toda la documentación complementaria se encuentra en [`./docs`](./docs)
 ### Requerimientos
 
 #### Requerimientos funcionales
-R1	El sistema permite registrar hoteles con su información básica (nombre, dirección, teléfono, correo, ubicación, descripción y servicios).	✅ Cumplido — modelo Hotel y endpoint /api/hoteles implementados.
-R2	El sistema permite registrar habitaciones asociadas a un hotel, con tipo, descripción, precio, capacidad, servicios y estado.	✅ Cumplido — modelo Habitacion y endpoint /api/habitaciones implementados.
-R3	Solo las habitaciones y hoteles activos pueden mostrarse o ser reservadas.	✅ Cumplido — validación implementada en reservas (solo habitaciones disponibles y activas).
-R4	El sistema permite registrar clientes con nombre, teléfono, correo y dirección.	✅ Cumplido — modelo Cliente y endpoint /api/clientes implementados.
-R6	Los clientes pueden realizar reservas seleccionando habitación, fechas y número de huéspedes, validando disponibilidad y capacidad.	✅ Cumplido — endpoint /api/reservas con validaciones de disponibilidad.
-R11	Se registran las tarifas de destinos turísticos con precios base y categorías silver, gold y platinum.	✅ Cumplido — modelo Tarifa y datos de prueba creados.
-R13	Habitaciones inactivas o en mantenimiento no pueden ser reservadas.	✅ Cumplido — manejado en lógica de disponibilidad.
+## 📋 Requerimientos del Sistema
+
+- El sistema permite registrar hoteles con su información básica: nombre, dirección, teléfono, correo, ubicación, descripción y servicios.
+
+- El sistema permite registrar habitaciones asociadas a un hotel, incluyendo tipo, descripción, precio, capacidad, servicios y estado.
+
+- Solo las habitaciones y hoteles activos pueden mostrarse o ser reservadas.
+
+- El sistema permite registrar clientes con nombre, teléfono, correo y dirección.
+
+- Los clientes pueden realizar reservas seleccionando habitación, fechas y número de huéspedes, validando disponibilidad y capacidad.
+
+- Se registran las tarifas de destinos turísticos con precios base y categorías: silver, gold y platinum.
+
+- Habitaciones inactivas o en mantenimiento no pueden ser reservadas.
 
 ---
 

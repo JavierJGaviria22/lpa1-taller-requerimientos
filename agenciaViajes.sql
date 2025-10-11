@@ -1,112 +1,117 @@
 -- --------------------------------------------------------
--- Host:                         C:\Users\DELL\Documents\Javier Jose Gaviria\UniRemigton\4to Semestre\Lenguaje de programacion avanzado 1\lpa1-taller-requerimientos\instance\app.db
--- Versión del servidor:         3.39.0
--- SO del servidor:              
--- HeidiSQL Versión:             12.1.0.6537
+-- CREACIÓN DE BASE DE DATOS Y TABLAS
 -- --------------------------------------------------------
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES  */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-
--- Volcando estructura de base de datos para app
-CREATE DATABASE IF NOT EXISTS "app";
-;
-
--- Volcando estructura para tabla app.cliente
-CREATE TABLE IF NOT EXISTS cliente (
-	id INTEGER NOT NULL, 
-	nombre VARCHAR(100) NOT NULL, 
-	email VARCHAR(120) NOT NULL, 
-	telefono VARCHAR(20) NOT NULL, 
-	PRIMARY KEY (id), 
-	UNIQUE (email)
+-- HOTELS
+DROP TABLE IF EXISTS hoteles;
+CREATE TABLE hoteles (
+    id INTEGER PRIMARY KEY,
+    nombre TEXT NOT NULL,
+    direccion TEXT,
+    telefono TEXT,
+    email TEXT,
+    ubicacion TEXT,
+    descripcion TEXT,
+    servicios TEXT,
+    estado TEXT,
+    calificacion_promedio REALj
 );
 
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para tabla app.clientes
-CREATE TABLE IF NOT EXISTS clientes (
-	id INTEGER NOT NULL, 
-	nombre VARCHAR(100) NOT NULL, 
-	telefono VARCHAR(50) NOT NULL, 
-	correo VARCHAR(100) NOT NULL, 
-	direccion VARCHAR(200) NOT NULL, 
-	PRIMARY KEY (id)
+-- HABITACIONES
+DROP TABLE IF EXISTS habitaciones;
+CREATE TABLE habitaciones (
+    id INTEGER PRIMARY KEY,
+    tipo TEXT NOT NULL,
+    descripcion TEXT,
+    precio REAL NOT NULL,
+    capacidad INTEGER NOT NULL,
+    estado TEXT,
+    hotel_id INTEGER NOT NULL,
+    FOREIGN KEY (hotel_id) REFERENCES hoteles(id)
 );
 
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para tabla app.habitaciones
-CREATE TABLE IF NOT EXISTS habitaciones (
-	id INTEGER NOT NULL, 
-	tipo VARCHAR(50) NOT NULL, 
-	descripcion TEXT, 
-	precio FLOAT NOT NULL, 
-	capacidad INTEGER NOT NULL, 
-	estado VARCHAR(20), 
-	hotel_id INTEGER NOT NULL, 
-	PRIMARY KEY (id), 
-	FOREIGN KEY(hotel_id) REFERENCES hoteles (id)
+-- CLIENTES
+DROP TABLE IF EXISTS clientes;
+CREATE TABLE clientes (
+    id INTEGER PRIMARY KEY,
+    nombre TEXT NOT NULL,
+    telefono TEXT NOT NULL,
+    correo TEXT NOT NULL,
+    direccion TEXT NOT NULL
 );
 
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para tabla app.hoteles
-CREATE TABLE IF NOT EXISTS hoteles (
-	id INTEGER NOT NULL, 
-	nombre VARCHAR(100) NOT NULL, 
-	direccion VARCHAR(150), 
-	telefono VARCHAR(20), 
-	email VARCHAR(100), 
-	ubicacion VARCHAR(100), 
-	descripcion TEXT, 
-	servicios TEXT, 
-	estado VARCHAR(20), 
-	calificacion_promedio FLOAT, 
-	PRIMARY KEY (id)
+-- RESERVAS
+DROP TABLE IF EXISTS reservas;
+CREATE TABLE reservas (
+    id INTEGER PRIMARY KEY,
+    fecha_reserva TEXT DEFAULT CURRENT_TIMESTAMP,
+    fecha_inicio TEXT NOT NULL,
+    fecha_fin TEXT NOT NULL,
+    estado TEXT,
+    total REAL NOT NULL,
+    cliente_id INTEGER NOT NULL,
+    habitacion_id INTEGER NOT NULL,
+    FOREIGN KEY (cliente_id) REFERENCES clientes(id),
+    FOREIGN KEY (habitacion_id) REFERENCES habitaciones(id)
 );
 
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para tabla app.reservas
-CREATE TABLE IF NOT EXISTS reservas (
-	id INTEGER NOT NULL, 
-	fecha_reserva DATETIME, 
-	fecha_inicio DATE NOT NULL, 
-	fecha_fin DATE NOT NULL, 
-	estado VARCHAR(20), 
-	total FLOAT NOT NULL, 
-	cliente_id INTEGER NOT NULL, 
-	habitacion_id INTEGER NOT NULL, 
-	PRIMARY KEY (id), 
-	FOREIGN KEY(cliente_id) REFERENCES clientes (id), 
-	FOREIGN KEY(habitacion_id) REFERENCES habitaciones (id)
+-- TARIFAS
+DROP TABLE IF EXISTS tarifas;
+CREATE TABLE tarifas (
+    id INTEGER PRIMARY KEY,
+    destino TEXT NOT NULL UNIQUE,
+    pasajes REAL NOT NULL,
+    silver REAL NOT NULL,
+    gold REAL NOT NULL,
+    platinum REAL NOT NULL
 );
 
--- La exportación de datos fue deseleccionada.
+-- --------------------------------------------------------
+-- 🔹 DATOS DE PRUEBA
+-- --------------------------------------------------------
 
--- Volcando estructura para tabla app.tarifas
-CREATE TABLE IF NOT EXISTS tarifas (
-	id INTEGER NOT NULL, 
-	destino VARCHAR(100) NOT NULL, 
-	pasajes FLOAT NOT NULL, 
-	silver FLOAT NOT NULL, 
-	gold FLOAT NOT NULL, 
-	platinum FLOAT NOT NULL, 
-	PRIMARY KEY (id), 
-	UNIQUE (destino)
-);
+-- 🏨 HOTELES
+INSERT INTO hoteles (nombre, direccion, telefono, email, ubicacion, descripcion, servicios, estado, calificacion_promedio) VALUES
+('Hotel Caribe Azul', 'Av. del Mar 123, Cartagena', '3001112233', 'contacto@caribeazul.com', 'Cartagena', 'Hotel frente al mar con piscina y spa.', 'WiFi, Piscina, Spa, Restaurante', 'activo', 4.6),
+('Montaña Real Resort', 'Km 12 vía al Nevado, Manizales', '3124455667', 'info@montanareal.com', 'Manizales', 'Resort campestre con vista a las montañas.', 'WiFi, Jacuzzi, Caminatas, Restaurante', 'activo', 4.8),
+('Hotel Central Bogotá', 'Cra 10 #15-20, Bogotá', '3107788990', 'recepcion@centralbogota.com', 'Bogotá', 'Hotel ejecutivo en el centro de la ciudad.', 'WiFi, Desayuno, Parqueadero, Gimnasio', 'activo', 4.3);
 
--- La exportación de datos fue deseleccionada.
+-- 🛏️ HABITACIONES
+INSERT INTO habitaciones (tipo, descripcion, precio, capacidad, estado, hotel_id) VALUES
+('Suite Deluxe', 'Habitación con vista al mar y jacuzzi.', 420000, 2, 'activo', 1),
+('Doble Estandar', 'Habitación doble con aire acondicionado.', 250000, 2, 'activo', 1),
+('Familiar Premium', 'Habitación amplia con dos camas queen.', 380000, 4, 'activo', 2),
+('Cabina Ecológica', 'Habitación ecológica con terraza.', 310000, 3, 'activo', 2),
+('Ejecutiva Simple', 'Habitación ejecutiva con escritorio y TV.', 200000, 1, 'activo', 3),
+('Doble Ejecutiva', 'Habitación con dos camas individuales.', 230000, 2, 'activo', 3);
 
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+-- 👤 CLIENTES
+INSERT INTO clientes (nombre, telefono, correo, direccion) VALUES
+('Ana Gómez', '3112233445', 'ana.gomez@mail.com', 'Cra 12 #45-32, Medellín'),
+('Carlos Pérez', '3125566778', 'carlos.perez@mail.com', 'Cll 7 #12-19, Bogotá'),
+('Laura Torres', '3009988776', 'laura.torres@mail.com', 'Av. Las Palmas #22-45, Cali');
+
+-- 📅 RESERVAS
+INSERT INTO reservas (fecha_inicio, fecha_fin, estado, total, cliente_id, habitacion_id) VALUES
+('2025-10-10', '2025-10-12', 'confirmada', 500000, 1, 1),
+('2025-11-05', '2025-11-07', 'pendiente', 460000, 2, 4),
+('2025-09-15', '2025-09-18', 'completada', 600000, 3, 2);
+
+-- ✈️ TARIFAS
+INSERT INTO tarifas (destino, pasajes, silver, gold, platinum) VALUES
+('Aruba', 418, 134, 167, 191),
+('Bahamas', 423, 112, 183, 202),
+('Cancún', 350, 105, 142, 187),
+('Hawaii', 858, 210, 247, 291),
+('Jamaica', 380, 115, 134, 161),
+('Madrid', 496, 190, 230, 270),
+('Miami', 334, 122, 151, 183),
+('Moscu', 634, 131, 153, 167),
+('New York', 495, 104, 112, 210),
+('Panamá', 315, 119, 138, 175),
+('Paris', 512, 210, 260, 290),
+('Rome', 478, 184, 220, 250),
+('Seul', 967, 205, 245, 265),
+('Sidney', 1045, 170, 199, 230),
+('Taipei', 912, 220, 245, 298),
+('Tokio', 989, 189, 231, 255);

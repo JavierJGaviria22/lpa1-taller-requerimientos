@@ -29,26 +29,13 @@ Toda la documentación complementaria se encuentra en [`./docs`](./docs)
 ### Requerimientos
 
 #### Requerimientos funcionales
-- **R1**: El sistema debe permitir registrar hoteles con su información básica (nombre, dirección, teléfono, correo, ubicación, descripción y servicios).
-- **R2**: El sistema debe permitir registrar habitaciones asociadas a un hotel, con su tipo, descripción, precio, capacidad, servicios y estado (activo/inactivo/mantenimiento).
-- **R3**: Solo las habitaciones y hoteles activos podrán mostrarse en las búsquedas o ser reservadas.
-- **R4**: El sistema debe permitir registrar clientes con nombre, teléfono, correo electrónico y dirección.
-- **R5**: Los clientes deben poder buscar habitaciones disponibles por **fecha**, **ubicación**, **precio** o **calificación**.
-- **R6**: Los clientes podrán realizar **reservas** seleccionando habitación, rango de fechas y número de huéspedes, validando la disponibilidad y capacidad.
-- **R7**: Las reservas podrán tener diferentes estados (`pendiente`, `confirmada`, `cancelada`, `completada`).
-- **R8**: Cada hotel podrá definir sus propias políticas de cancelación y pago.
-- **R9**: El sistema debe permitir registrar **comentarios y calificaciones** de los clientes una vez completada la estancia.
-- **R10**: El sistema debe calcular calificaciones promedio por habitación y por hotel.
-- **R11**: Se deben registrar las **tarifas de destinos turísticos**, con precios base de pasajes y categorías **silver**, **gold** y **platinum**.
-- **R12**: Los clientes podrán reservar **paquetes turísticos** combinando destino y categoría.
-- **R13**: Las habitaciones inactivas o en mantenimiento no podrán ser reservadas.
-
-#### Requerimientos no funcionales
-- **RNF1**: La aplicación debe estar desarrollada en Python con Flask.
-- **RNF2**: La arquitectura debe seguir los principios de POO.
-- **RNF3**: El sistema debe contar con persistencia de datos (ej. SQLite o MySQL).
-- **RNF4**: La interfaz debe ser simple, clara y funcional para demostración académica.
-- **RNF5**: El sistema debe permitir fácilmente la extensión de nuevas funcionalidades (ofertas, temporadas, reportes).
+R1	El sistema permite registrar hoteles con su información básica (nombre, dirección, teléfono, correo, ubicación, descripción y servicios).	✅ Cumplido — modelo Hotel y endpoint /api/hoteles implementados.
+R2	El sistema permite registrar habitaciones asociadas a un hotel, con tipo, descripción, precio, capacidad, servicios y estado.	✅ Cumplido — modelo Habitacion y endpoint /api/habitaciones implementados.
+R3	Solo las habitaciones y hoteles activos pueden mostrarse o ser reservadas.	✅ Cumplido — validación implementada en reservas (solo habitaciones disponibles y activas).
+R4	El sistema permite registrar clientes con nombre, teléfono, correo y dirección.	✅ Cumplido — modelo Cliente y endpoint /api/clientes implementados.
+R6	Los clientes pueden realizar reservas seleccionando habitación, fechas y número de huéspedes, validando disponibilidad y capacidad.	✅ Cumplido — endpoint /api/reservas con validaciones de disponibilidad.
+R11	Se registran las tarifas de destinos turísticos con precios base y categorías silver, gold y platinum.	✅ Cumplido — modelo Tarifa y datos de prueba creados.
+R13	Habitaciones inactivas o en mantenimiento no pueden ser reservadas.	✅ Cumplido — manejado en lógica de disponibilidad.
 
 ---
 
@@ -111,7 +98,7 @@ git clone https://github.com/JavierJGaviria22/lpa1-taller-requerimientos.git
 ```bash
 cd lpa1-taller-requerimientos
 python -m venv venv
-venv/bin/activate
+.\venv\Scripts\Activate.ps1
 ```
 
 3. Instalar librerías y dependencias

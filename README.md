@@ -104,7 +104,7 @@ Para ejecutar el sistema en tu entorno local, sigue los pasos:
 
 1. **Clonar el proyecto**
 ```bash
-git clone https://github.com/UR-CC/lpa1-taller-requerimientos.git
+git clone https://github.com/JavierJGaviria22/lpa1-taller-requerimientos.git
 ```
 
 2. Crear y activar entorno virtual
@@ -112,7 +112,6 @@ git clone https://github.com/UR-CC/lpa1-taller-requerimientos.git
 cd lpa1-taller-requerimientos
 python -m venv venv
 venv/bin/activate
-source venv/bin/activate
 ```
 
 3. Instalar librerías y dependencias
@@ -125,6 +124,11 @@ pip install -r requirements.txt
 1. Ejecutar el proyecto
 ```bash
 cd lpa1-taller-requerimientos
-python app.py
+python run.py
 ```
 
+2. Cargar bade de datos
+Al ejecutar la app con run.py se creara en instance/app.db
+abrir con DBeaver y ejecutar agenciaViajes.sql
+
+3. Ejecutar en frontend index.html con live server de vs code para correr la UI de la app.
